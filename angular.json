@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ingresoEgresoApp": {
+    "ingresoegresoapp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ingresoEgresoApp:build:production"
+              "buildTarget": "ingresoegresoapp:build:production"
             },
             "development": {
-              "buildTarget": "ingresoEgresoApp:build:development"
+              "buildTarget": "ingresoegresoapp:build:development"
             }
           },
           "defaultConfiguration": "development"
