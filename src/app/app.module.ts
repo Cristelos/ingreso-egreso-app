@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 // Módulos
@@ -27,6 +27,14 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 
+// Importamos y registramos los datos de localización para "es-ES"
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { OrdenIngresoPipe } from './pipes/orden-ingreso.pipe';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { GraficaComponent } from './ingreso-egreso/estadistica/grafica/grafica.component';
+registerLocaleData(localeEs, 'es-ES');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +46,9 @@ import { environment } from '../environments/environment';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrdenIngresoPipe,
+    
   ],
   imports: [
     BrowserModule,
@@ -49,11 +59,14 @@ import { environment } from '../environments/environment';
       maxAge: 25,
       logOnly: environment.production
     }),
+    GraficaComponent
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    { provide: LOCALE_ID, useValue: 'es-ES' },
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })
