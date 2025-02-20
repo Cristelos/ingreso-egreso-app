@@ -6,9 +6,9 @@ import {
   provideCharts,
   withDefaultRegisterables,
 } from 'ng2-charts';
-import { AppState } from '../../../app.reducer';
 import { Subscription } from 'rxjs';
 import { IngresoEgreso } from '../../../models/ingreso-egreso.model';
+import { AppStateWithIngreso } from '../../ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-grafica',
@@ -38,7 +38,7 @@ export class GraficaComponent implements OnInit, OnDestroy {
   };
   public doughnutChartType: ChartType = 'doughnut';
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppStateWithIngreso>) {}
 
   ngOnInit(): void {
     this.ingresosEgresosSubs = this.store
@@ -81,7 +81,7 @@ export class GraficaComponent implements OnInit, OnDestroy {
     event: ChartEvent;
     active: object[];
   }): void {
-    console.log(event, active);
+    
   }
 
   public chartHovered({
@@ -91,6 +91,6 @@ export class GraficaComponent implements OnInit, OnDestroy {
     event: ChartEvent;
     active: object[];
   }): void {
-    console.log(event, active);
+    
   }
 }
